@@ -25,42 +25,100 @@ abstract class SilverBotPlugin {
 		//
 	}
 	
-	// sets up some internal vals passed over from the bot
-	public function setup($bot, $config) {
+    /**
+     * setup 
+	 * sets up some internal vals passed over from the bot
+     * 
+     * @param SilverBot $bot 
+     * @param mixed $config 
+     * @access public
+     * @return void
+     */
+	public function setup(SilverBot $bot, $config) {
 		$this->bot = $bot;
 		$this->config = $config;
 	}
 	
-	// to perform on-connect functions
-	// called when bot connects to a server
+    /**
+     * onConnect 
+	 * to perform on-connect functions
+     * called when bot connects to a server
+     * 
+     * @access public
+     * @return void
+     */
 	public function onConnect() {
 		//
 	}
 	
-	// to perform on-join functions
-	// called when a user joins a channel the bot is in, or the bot joins a channel
+    /**
+     * onJoin
+     *
+	 * to perform on-join functions
+	 * called when a user joins a channel the bot is in, or the bot joins a channel
+     * 
+     * @param mixed $data 
+     * @access public
+     * @return void
+     */
 	public function onJoin($data) {
 		//
 	}
 	
-	// to perform on-part functions
-	// called when a user parts a channel the bot is in, or the bot parts a channel
+    /**
+     * onPart 
+     * 
+	 * to perform on-part functions
+	 * called when a user parts a channel the bot is in, or the bot parts a channel
+     *
+     * @param mixed $data 
+     * @access public
+     * @return void
+     */
 	public function onPart($data) {
 		//
 	}
+
+    /**
+     * onUserChannelMsg 
+     * 
+     * @param array $data 
+     * @access public
+     * @return void
+     */
+    public function onUserChannelMsg($data) {
+        //
+    }
 	
-	// for autoloading and all that crap
+    /**
+     * ident 
+     *
+     * for autoloading and all that crap
+     *
+     * @access public
+     * @return void
+     */
 	public function ident() {
 		return get_class($this) . '-' . $this->version;
 	}
 
     /**
+     * addTimer 
+     *
      * Adds a new timer
      * string $timerName - Name of timer to add. If the same as an existing timer, overwrite the old one.
      * string $when - When to run the timer, uses the strtotime() syntax
      * callback $func - Function to call when this timer elapses, see call_user_func() for callback details
      * mixed $args - Arguments to give to the function
      * boolean $onshot - Indicates whether this timer only happens once.
+     * 
+     * @param mixed $timerName 
+     * @param mixed $when 
+     * @param mixed $func 
+     * @param mixed $args 
+     * @param mixed $oneshot 
+     * @access public
+     * @return void
      */
     public function addTimer($timerName, $when, $func, $args = null, $oneshot = false) {
         $this->timers[$timerName] = array(

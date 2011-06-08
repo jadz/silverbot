@@ -281,6 +281,7 @@ class SilverBot {
 	protected function callChannel($trigger, $command, $data) {
 		foreach ($this->plugins as $plugname=>$plugin) {
     		$plugin['plugin']->chn($data);
+            $plugin['plugin']->onUserChannelMsg($data);
 			if ($plugin['plugin']->trigger !== $trigger) continue;
 			foreach ($plugin['commands']['channel'] as $name) {
 				if ($name === $command) { // match!
